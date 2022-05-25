@@ -6,14 +6,15 @@ const options = {
     },
 };
 
-fetch(
-    "https://online-movie-database.p.rapidapi.com/auto-complete?q=spiderman",
-    options
-)
-    .then((response) => response.json())
-    .then((data) => {
-        // console.log(data);
+const showMovies = async () => {
+    try {
+        const response = await fetch(
+            "https://online-movie-database.p.rapidapi.com/auto-complete?q=spiderman",
+            options
+        );
+        const data = await response.json();
         const arrayMovies = data.d;
+
         arrayMovies.map((movie) => {
             // console.log(movie);
             const title = movie.l;
@@ -29,5 +30,9 @@ fetch(
             `;
             document.querySelector("#container").innerHTML += poster;
         });
-    })
-    .catch((err) => console.error(err));
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+document.addEventListener("DOMContentLoaded", showMovies);
