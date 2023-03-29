@@ -18,7 +18,7 @@ const showMovies = async () => {
         arrayMovies.map((movie) => {
             // console.log(movie);
             const title = movie.l;
-            const image = movie.i.imageUrl;
+            const image = movie.i ? movie.i.imageUrl : '';
             const cast = movie.s;
 
             const poster = `
